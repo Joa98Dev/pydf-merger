@@ -5,7 +5,7 @@
 **Author**: Joa98
 
 <p align="center">
-  <img src="assets/screenshots/img-1.png" alt="PyDF Merger Screenshot"/>
+  <img src="assets/screenshots/img-01.png" alt="PyDF Merger Screenshot"/>
 </p>
 
 
