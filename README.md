@@ -4,7 +4,7 @@
 
 **Author**: Joa98
 
-<img src="assets/screenshots/img-1.png" align="center" />
+<img src="../assets/screenshots/img-1.png" align="center" />
 
 PyDF Merger is a Python-based desktop application that allows users to easly merge multiple PDF documents into a single file. With its clean and user-friendly GUI, it simplifies the tedious task of organizing and merging scattered PDF files into one document. All in few clicks.
 
