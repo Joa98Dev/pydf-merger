@@ -1,0 +1,7 @@
+# Virtual environment
+pdfmerger/
+env/
+venv/
+
+# Cache
+__pycache__/
