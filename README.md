@@ -1,4 +1,4 @@
-# PyDF Merger - Python PDF merger application
+# PyDF Merger - Python PDF Merger Application
 
 **Version**: 1.3.2
 
