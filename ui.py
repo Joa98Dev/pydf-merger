@@ -1,6 +1,7 @@
 # Import the Tkinter and merger libraries
 import tkinter as tk
 from tkinter import filedialog, messagebox
+import webbrowser
 from merger import merge_pdfs
 
 # Class that manage all the program logic
@@ -14,6 +15,15 @@ class PdfMergerApp:
         self.create_widgets()
 
     def create_widgets(self):
+        # Create a menu bar
+        menubar = tk.Menu(self.root)
+        self.root.config(menu=menubar)
+
+        # Add a Help button with an "About" option
+        help_menu = tk.Menu(menubar, tearoff=0)
+        help_menu.add_command(label="About", command=self.about_window)
+        menubar.add_cascade(label="Help", menu=help_menu)
+
         # Button to add PDF files
         self.add_button = tk.Button(self.root, text="Add PDFs", command=self.add_files)
         self.add_button.pack(pady=5)
@@ -29,6 +39,26 @@ class PdfMergerApp:
         # Display the selected PDF files
         self.listbox = tk.Listbox(self.root, width=50)
         self.listbox.pack(pady=5)
+
+    def about_window(self):
+        about_win = tk.Toplevel(self.root)
+        about_win.title("About PyDF Merger")
+        about_win.geometry("300x160")
+        about_win.resizable(False, False)
+
+        tk.Label(about_win, text="PyDF Merger v1.4.0", font=("Arial", 12, "bold")).pack(pady=(10, 0))
+        tk.Label(about_win, text="A simple open-source tool to merge PDF files.", wraplength=280).pack(pady=5)
+
+        tk.Label(about_win, text="Author: Joa98", font=("Arial", 10)).pack(pady=(5,0))
+        tk.Label(about_win, text="License: MIT", font=("Arial", 10)).pack(pady=(0,5))
+        
+        
+        # Project's link
+        link = tk.Label(about_win, text="GitHub Repository", fg="blue", cursor="hand2")
+        link.pack()
+        link.bind("<Button-1>", lambda e: webbrowser.open_new("https://github.com/Joa98Dev/pydf-merger"))  # Repository link
+
+        tk.Button(about_win, text="Close", command=about_win.destroy).pack(pady=10)
 
     def add_files(self):
         # Open file dialog to select multiple PDF files
