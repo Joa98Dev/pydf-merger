@@ -3,6 +3,7 @@ import tkinter as tk
 from tkinter import filedialog, messagebox
 import webbrowser
 from merger import merge_pdfs
+import spliter
 
 # Class that manage all the program logic
 class PdfMergerApp:
@@ -31,6 +32,10 @@ class PdfMergerApp:
         # Button to merge PDF files
         self.merge_button = tk.Button(self.root, text="Merge PDFs", command=self.merge)
         self.merge_button.pack(pady=5)
+
+        # Button to split PDF files
+        self.split_button = tk.Button(self.root, text="Split PDF", command=self.split)
+        self.split_button.pack(pady=5)
         
         # Button to remove the selected PDF file
         self.remove_button = tk.Button(self.root, text="Remove PDFs", command=self.remove_selected)
@@ -46,7 +51,7 @@ class PdfMergerApp:
         about_win.geometry("300x160")
         about_win.resizable(False, False)
 
-        tk.Label(about_win, text="PyDF Merger v1.4.0", font=("Arial", 12, "bold")).pack(pady=(10, 0))
+        tk.Label(about_win, text="PyDF Merger v2.0.0", font=("Arial", 12, "bold")).pack(pady=(10, 0))
         tk.Label(about_win, text="A simple open-source tool to merge PDF files.", wraplength=280).pack(pady=5)
 
         tk.Label(about_win, text="Author: Joa98", font=("Arial", 10)).pack(pady=(5,0))
@@ -88,6 +93,31 @@ class PdfMergerApp:
                 messagebox.showinfo("Done!", f"PDF Merged: {output_file}")
             except Exception as e:
                 messagebox.showerror("Error", str(e))
+
+   
+    def split(self):
+        # Get selected file from the listbox
+        selected_index = self.listbox.curselection()
+
+        if not selected_index:
+            messagebox.showwarning("Warning", "Please select a PDF file from the list.")
+            return
+
+        # Get the actual file path
+        file_path = self.pdf_files[selected_index[0]]
+
+        # Ask where to save the split PDFs
+        output_path = filedialog.askdirectory(title="Select Output Folder")
+    
+        if not output_path:
+            return
+
+        try:
+            # Call the split function
+            total = spliter.split_pdfs(file_path, output_path)
+            messagebox.showinfo("Success", f"Split into {total} pages.")
+        except Exception as e:
+            messagebox.showerror("Error", f"Failed to split PDF: {e}")
 
     def remove_selected(self):
         # Get selected listbox entries

@@ -5,3 +5,9 @@ venv/
 
 # Cache
 __pycache__/
+
+build/
+assets/
+dist/
+
+main.spec
